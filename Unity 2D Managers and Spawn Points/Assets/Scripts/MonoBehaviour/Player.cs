@@ -1,19 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Player : Character
 {
     public Inventory inventoryPrefab;
     Inventory inventory;
-
     public HealthBar healthBarPrefab;
     HealthBar healthBar;
+    public HitPoints hitPoints;
 
     public void Start()
     {
         hitPoints.value = startingHitPoints;
-        inventory = Instantiate(inventoryPrefab);
-        healthBar = Instantiate(healthBarPrefab);
-        healthBar.character = this;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -56,5 +54,43 @@ public class Player : Character
         }
         print("didnt adjust hitpoints");
         return false;
+    }
+
+	public override IEnumerator DamageCharacter(int damage, float interval)
+	{
+		while (true)
+		{
+            hitPoints.value -= damage;
+
+            if (hitPoints.value <= float.Epsilon)
+			{
+                KillCharacter();
+                break;
+			}
+
+            if (interval > float.Epsilon)
+			{
+                yield return new WaitForSeconds(interval);
+			}
+			else
+			{
+                break;
+			}
+		}
+	}
+
+	public override void KillCharacter()
+	{
+		base.KillCharacter();
+        Destroy(healthBar.gameObject);
+        Destroy(inventory.gameObject);
+	}
+
+	public override void ResetCharacter()
+	{
+        inventory = Instantiate(inventoryPrefab);
+        healthBar = Instantiate(healthBarPrefab);
+        healthBar.character = this;
+        hitPoints.value = startingHitPoints;
     }
 }
