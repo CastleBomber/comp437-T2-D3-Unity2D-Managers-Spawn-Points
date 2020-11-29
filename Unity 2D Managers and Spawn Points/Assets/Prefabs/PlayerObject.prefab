@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4374147330545137823}
   - component: {fileID: 4374147330545137808}
   - component: {fileID: 6089003652658707919}
+  - component: {fileID: 2968217203182623171}
   m_Layer: 10
   m_Name: PlayerObject
   m_TagString: Player
@@ -167,7 +168,20 @@ MonoBehaviour:
   hitPoints: {fileID: 11400000, guid: 1fa6aee5eead296438447f1643e9e451, type: 2}
   maxHitPoints: 10
   startingHitPoints: 6
-  healthBarPrefab: {fileID: 6949342110977169699, guid: bb8a41269c026cd42b318070ef393481,
-    type: 3}
   inventoryPrefab: {fileID: 7360900499109471184, guid: 8860119d80970f84f8daa4310e32f039,
     type: 3}
+  healthBarPrefab: {fileID: 6949342110977169699, guid: bb8a41269c026cd42b318070ef393481,
+    type: 3}
+--- !u!114 &2968217203182623171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374147330545137812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498a6f20e8eab984e83fc4d91c8aac7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 3
